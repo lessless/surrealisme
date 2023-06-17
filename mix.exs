@@ -22,8 +22,8 @@ defmodule Surrealisme.MixProject do
   defp deps do
     [
       {:db_connection, "~> 2.0"},
-      {:mint, "~> 1.0"},
-      {:websocket_client, "~> 1.0"}
+      {:mint_web_socket, "~> 1.0"},
+      {:jason, "~>1.0"}
     ]
   end
 end
