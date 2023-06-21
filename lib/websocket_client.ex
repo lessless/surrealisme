@@ -43,39 +43,12 @@ defmodule Surrealisme.WebsocketClient do
     GenServer.cast(socket, :close)
   end
 
-  @doc """
-  Sends an event to the WebSocket server per the message protocol.
-  """
-  def send_event(socket, topic, event, msg) do
-    GenServer.call(socket, {:send, %Message{topic: topic, event: event, payload: msg}})
-  end
 
   @doc """
   Sends a low-level text message to the client.
   """
   def send(socket, msg) do
     GenServer.call(socket, {:send, msg})
-  end
-
-  @doc """
-  Sends a heartbeat event
-  """
-  def send_heartbeat(socket) do
-    send_event(socket, "phoenix", "heartbeat", %{})
-  end
-
-  @doc """
-  Sends join event to the WebSocket server per the Message protocol
-  """
-  def join(socket, topic, msg) do
-    send_event(socket, topic, "phx_join", msg)
-  end
-
-  @doc """
-  Sends leave event to the WebSocket server per the Message protocol
-  """
-  def leave(socket, topic, msg) do
-    send_event(socket, topic, "phx_leave", msg)
   end
 
   ## GenServer implementation

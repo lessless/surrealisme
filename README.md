@@ -1,23 +1,9 @@
+SurrealDB WS client playground. All WS code is taken from Phoenix https://github.com/phoenixframework/phoenix/blob/main/test/support/websocket_client.exs
+
 # Surrealisme
 
 ```elixir
-{:ok, conn, socket, ref}  = Surrealisme.connect()
- Surrealisme.query(conn, socket, ref, "SELECT * From users;")
+ {:ok, socket} = Surrealisme.WebsocketClient.connect(self(),"ws://localhost:8000/rpc", :none)
+ Surrealisme.WebsocketClient.send(socket, {:text, "query"})
+ :erlang.process_info(self(), :messages)
 ```
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `surrealisme` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:surrealisme, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/surrealisme>.
