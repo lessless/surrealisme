@@ -1,0 +1,4 @@
+#V2
+CREATE account SET\n	name = 'ACME Inc',\n	created_at = time::now()\n;
+help
+CREATE account SET\n	name = 'ACME Inc',\n	created_at = time::now()\n;

@@ -1,16 +1,11 @@
-SurrealDB WS client playground. All WS code is taken from Phoenix https://github.com/phoenixframework/phoenix/blob/main/test/support/websocket_client.exs
+SurrealDB WS client playground.
+WSClient code: https://github.com/elixir-mint/mint_web_socket/blob/main/examples/genserver.exs
+
+Connection handling: https://dashbit.co/blog/building-a-new-mysql-adapter-for-ecto-part-iii-dbconnection-integration/
 
 # Surrealisme
 
 ```elixir
-
-## Phx WS client
- {:ok, socket} = Surrealisme.WebsocketClient.connect(self(),"ws://localhost:8000/rpc", :none)
- Surrealisme.WebsocketClient.send(socket, {:text, "query"})
- :erlang.process_info(self(), :messages)
-
-## Mint sample WS client
-
-{:ok, socket} =  Surrealisme.WSClient.connect("ws://localhost:8000/rpc")
-{:ok, socket} =  Surrealisme.WSClient.send_message(socket, "query")
+{:ok, socket} = Surrealisme.Protocol.connect(opts)
+WSClient.send_message(socket, Query.select(["article"]))
 ```
